@@ -28,8 +28,3 @@ export default function Index() {
     </Container>
   );
 };
-
-// Deploy
-// Unit testing
-// check with instrucitons
-// finsih document

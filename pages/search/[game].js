@@ -45,10 +45,9 @@ export default function Search() {
     const gamesWithPrices = [];
     await Promise.all( // resolves when everything inside is finished
       games.map(async (game) => {
-        //const res = await fetch(`https://www.cheapshark.com/api/1.0/games?title=${encodeURIComponent(game.name)}`); // call API to get game price
-        //const data = await res.json();
-        //const price = data.length > 0 ? parseFloat(data[0].cheapest) : 'Price not available';
-        const price = 5; // delete later im getting rate limited by the API :(
+        const res = await fetch(`https://www.cheapshark.com/api/1.0/games?title=${encodeURIComponent(game.name)}`); // call API to get game price
+        const data = await res.json();
+        const price = data.length > 0 ? parseFloat(data[0].cheapest) : 'Price not available';
         gamesWithPrices.push({ ...game, price }); // adds a new price attribute to all games
       })
     );
