@@ -53,7 +53,7 @@ export default function Cart() {
 
       <Container className="cart">
         {cartList.map((product, index) => (
-          <Container className="cart-item">
+          <Container className="cart-item" key={index}>
             <ul key={index}>
               <strong>{product.name}</strong><br />
               <Image src={product.background_image} alt={product.name} style={{ width: '100px', height: '100px', marginRight: '10px' }} /><br /><br />

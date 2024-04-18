@@ -68,7 +68,7 @@ export default function Login() {
 
                 <Button style={{ height: '50px', width: '200px', fontSize: '25px' }} variant="primary" type="submit" className="continue-button">Continue</Button>
             </Form>
-            <p>Don't have an account? <a href="../signup">Sign Up</a></p>
+            <p>Don&apos;t have an account? <a href="../signup">Sign Up</a></p>
         </Container>
     );
 }
