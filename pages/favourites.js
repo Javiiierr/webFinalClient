@@ -19,7 +19,7 @@ export default function Favourites() {
       if (!cookies.jwt) { // if no cookie found, send user to login
         router.push("./login")
       } else { // makes a POST request to http://localhost:8080 to validate jwt token with server/Middlewares/Auth
-        const res = await fetch(`https://web-final-server.vercel.app`, {
+        const res = await fetch(`https://elegant-pear-coat.cyclic.app`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
