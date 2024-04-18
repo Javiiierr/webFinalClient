@@ -25,7 +25,7 @@ export default function ProductBox(props) {
 
   // create new list, add product to list, set state to new list
   function addToCart(product) {
-    if (!loggedIn) router.push("./login") // if user isn't logged in, send them to login
+    if (!loggedIn) router.push("../login") // if user isn't logged in, send them to login
     else {
       let newCartList = Object.assign([], cartList);
       newCartList.push(product);
@@ -35,7 +35,7 @@ export default function ProductBox(props) {
 
   // create new list, add product to list, set state to new list
   function addToFavourites(product) {
-    if (!loggedIn) router.push("./login") // if user isn't logged in, send them to login
+    if (!loggedIn) router.push("../login") // if user isn't logged in, send them to login
     else { 
       let newFavouritesList = Object.assign([], favList);
       newFavouritesList.push(product);
