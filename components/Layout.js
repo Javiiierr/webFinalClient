@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
 import { cartListAtom } from '@/atoms/cartAtom';
 import { favouriteListAtom } from '@/atoms/favouritesAtom';
-import { useCookies } from 'react-cookie';
 import { useRouter } from 'next/router';
 import { Button, Container, Navbar, Nav } from 'react-bootstrap';
 import Link from 'next/link';
@@ -26,7 +25,7 @@ export default function Layout(props) {
 
   // called by the Log Out button
   const logOut = () => {
-    removeCookie("jwt"); // clears jwt cookie
+    localStorage.removeItem("jwt"); // clears jwt cookie
     setCartList([]) // clear cart
     setFavList([]) // clear favourites
     setLoggedIn(false);
