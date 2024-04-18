@@ -1,0 +1,125 @@
+/*background of site*/
+body {
+  background: linear-gradient(45deg, #1e0334, #6e44aa);
+  background-size: cover;
+  background-attachment: fixed;
+  color:white;
+  
+}
+
+/*-----------------FONTS-------------------------*/
+.jersey-10-regular {
+  font-family: "Jersey 10", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/*all buttons are this colour*/
+.btn {
+  background-color: #6733e0 !important ;
+  border-color: #6733e0 !important ;
+  color: white !important ;
+  margin-left: 20px;
+}
+
+/*-----------------LAYOUT-------------------------*/
+
+/*navbar background*/
+.navbar {
+  line-height: 80px;
+ background-color: rgba(255, 255, 255, .05); /*semi transparent*/
+}
+
+/* navbar brand */
+.brand-link {
+  text-decoration: none !important;
+  color: white !important;
+  font-size: 50px !important;
+  padding-right: 25px !important;
+}
+
+
+/*navbar links dont have ugly purple colour etc*/
+.layout-link{
+  padding-left:37px;
+  color: white; 
+  text-decoration: none;
+  font-size: 21px;
+}
+
+/*child box is below navbar but inside layout*/
+.childBox {
+  margin: 40px auto; /* auto margin for centering horizontally */
+  color: white;
+  display: block; /* optional: by default, divs are block-level elements */
+  width: fit-content; /* optional: sets the width of the box to fit its content */
+}
+
+
+
+/*-----------------CATALOGUE------------------------*/
+/*categories container*/
+.categories{
+  background-color: rgba(255, 255, 255, .05)! important; 
+  padding:20px;
+  text-align:center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  border-radius: 10%;
+}
+
+/*------------PRODUCT BOX------------------------*/
+.product-box {
+  width: 400px; /* Set the width of the product box */
+  text-align: center; /* Center align the content */
+  margin: 20px; /* Add spacing around the product box */
+  background-color: rgba(255, 255, 255, .05)! important; 
+  border-radius: 2%;
+  padding: 10px; /* Add padding inside the product box */
+  color:white !important;
+}
+
+
+/*----------LOGIN AND SIGNUP----------------*/
+.login-box {
+  padding: 20px;
+  border-radius: 5%;
+  background-color: rgba(255, 255, 255, .05)! important; 
+  font-size:23px;
+  text-align: center;
+}
+
+.continue-button {
+  margin-top: 20px;
+}
+
+
+/*---------------cart----------------------*/
+
+.cart{
+  margin-top:40px;
+}
+
+.cart-item{
+  max-width: 200px;
+  padding: 10px;
+  border-radius: 5px;
+  margin:20px;
+  background-color: rgba(255, 255, 255, .05)! important; 
+}
+
+/*-------------------checkout--------------*/
+.checkout-content{
+  font-size:x-large;
+}
+
+
+/*-------------------index--------------*/
+.welcome-text{
+  padding: 10px;
+  font-size: 25px;
+}
+
+.welcome-content{
+  text-align: center;
+}
