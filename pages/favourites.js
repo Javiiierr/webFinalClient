@@ -21,7 +21,7 @@ export default function Favourites() {
         router.push("./login");
       } else {
         // Make a POST request to server to validate the JWT token
-        const res = await fetch(`https://web-final-server.vercel.app`, {
+        const res = await fetch(`https://elegant-pear-coat.cyclic.app`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
