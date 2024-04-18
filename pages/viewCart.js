@@ -7,36 +7,33 @@ import { Button, Container, Image } from 'react-bootstrap';
 
 export default function Cart() {
   const [cartList, setCartList] = useAtom(cartListAtom); // get cart list
-  const [cookies, setCookie, removeCookie] = useCookies([]); // get jwt cookie from browser
   const [userName, setUserName] = useState();
   const router = useRouter();
 
-  // called when cookies change, used to protect route
+  // runs whenever the jwt token changes
   useEffect(() => {
     const verifyUser = async () => {
-      console.log(cookies.jwt)
-      console.log(document.cookie)
-      if (!cookies.jwt) { // if no cookie found, send user to login
-        router.push("./login")
-      } else { // makes a POST request to http://localhost:8080 to validate jwt token with server/Middlewares/Auth
-        const res = await fetch(`https://elegant-pear-coat.cyclic.app`, {
+      if (!localStorage.getItem('jwt')) { // if no token found, send user to login
+        router.push("./login");
+      } else {
+        const res = await fetch(`https://elegant-pear-coat.cyclic.app`, { // makes a POST request to http://localhost:8080 to validate jwt token with server/Middlewares/Auth
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          credentials: 'include'
+          body: JSON.stringify({ token: localStorage.getItem('jwt') }) // Send JWT token in the request body
         });
         const data = await res.json();
         if (!data.status) { // if invalid token
-          removeCookie("jwt");
+          localStorage.removeItem('jwt');
           router.push("./login");
-        } else {
-          setUserName(data.user); // set username from response to be displayed in cart header
+        } else { // set username from response to be displayed in favourites header
+          setUserName(data.user);
         }
       }
-    }
-    verifyUser()
-  }, [cookies, router, removeCookie])
+    };
+    verifyUser();
+  }, [router, typeof window !== 'undefined' && localStorage.getItem('jwt')]);
 
   // calls when user clicks remove button
   const removeFromCart = (indexToRemove) => {

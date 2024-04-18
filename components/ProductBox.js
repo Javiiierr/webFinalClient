@@ -2,28 +2,26 @@ import React, { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
 import { cartListAtom } from '@/atoms/cartAtom';
 import { favouriteListAtom } from '@/atoms/favouritesAtom';
-import { useCookies } from 'react-cookie';
 import { useRouter } from 'next/router';
 import { Button, Card, Row, Col } from 'react-bootstrap';
 
 export default function ProductBox(props) {
   const [cartList, setCartList] = useAtom(cartListAtom);
   const [favList, setFavList] = useAtom(favouriteListAtom);
-  const [cookies, setCookie, removeCookie] = useCookies(['jwt']); // get jwt cookie from browser
   const [loggedIn, setLoggedIn] = useState(false);
   const { product } = props; // ProductBox is passed a game via props and it is passed into product
   const router = useRouter();
   const [expanded, setExpanded] = useState(false);
 
-  // runs everytime the stored cookies change
+  // runs everytime the jwt token changes
   useEffect(() => {
-    // if jwt cookie is found the user is logged in, if not they are logged out
-    if (cookies.jwt) { 
-      setLoggedIn(true);
-    } else {
+    // if jwt token is found the user is logged in, if not they are logged out
+    if (!localStorage.getItem('jwt')) {
       setLoggedIn(false);
+    } else {
+      setLoggedIn(true);
     }
-  }, [cookies]);
+  }, [typeof window !== 'undefined' && localStorage.getItem('jwt')]);
 
   // create new list, add product to list, set state to new list
   function addToCart(product) {

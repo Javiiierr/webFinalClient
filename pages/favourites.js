@@ -13,15 +13,13 @@ export default function Favourites() {
   const [userName, setUserName] = useState();
   const router = useRouter();
 
-  // called when cookies change, used to protect route
+  // runs whenever the jwt token changes
   useEffect(() => {
     const verifyUser = async () => {
-      // Check if the JWT token exists
-      if (!localStorage.getItem('jwt')) {
+      if (!localStorage.getItem('jwt')) { // if no token found, send user to login
         router.push("./login");
       } else {
-        // Make a POST request to server to validate the JWT token
-        const res = await fetch(`https://elegant-pear-coat.cyclic.app`, {
+        const res = await fetch(`https://elegant-pear-coat.cyclic.app`, { // makes a POST request to http://localhost:8080 to validate jwt token with server/Middlewares/Auth
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -29,16 +27,16 @@ export default function Favourites() {
           body: JSON.stringify({ token: localStorage.getItem('jwt') }) // Send JWT token in the request body
         });
         const data = await res.json();
-        if (!data.status) {
+        if (!data.status) { // if invalid token
           localStorage.removeItem('jwt');
           router.push("./login");
-        } else {
+        } else { // set username from response to be displayed in favourites header
           setUserName(data.user);
         }
       }
     };
     verifyUser();
-  }, [router]);
+  }, [router, typeof window !== 'undefined' && localStorage.getItem('jwt')]);
 
   // calls when user clicks remove button
   const removeFromFavourites = (indexToRemove) => {

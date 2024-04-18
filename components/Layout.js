@@ -13,15 +13,15 @@ export default function Layout(props) {
   const [loggedIn, setLoggedIn] = useState(false);
   const router = useRouter();
 
-  // runs everytime the stored cookies change
+  // runs everytime the jwt token changes
   useEffect(() => {
-    // if jwt cookie is found the user is logged in, if not they are logged out
+    // if jwt token is found the user is logged in, if not they are logged out
     if (!localStorage.getItem('jwt')) {
       setLoggedIn(false);
     } else {
       setLoggedIn(true);
     }
-  }, []);
+  }, [typeof window !== 'undefined' && localStorage.getItem('jwt')]);
 
   // called by the Log Out button
   const logOut = () => {
