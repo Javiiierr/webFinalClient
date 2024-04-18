@@ -96,7 +96,6 @@ export default function OrderForm() {
       ) : (
         <Container>
           <h2>Order Confirmed</h2>
-          <strong>Total: ${cartList.reduce((total, prod) => total + prod.price, 0).toFixed(2)}</strong> <br />
           {formData.paymentMethod === 'paypal' ? (
             <Container>
               <p>Receipt sent to: {formData.email}</p>
