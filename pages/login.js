@@ -18,7 +18,7 @@ export default function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault(); // prevents the default behaviour when submitting a form, allows for custom behaviour 
         try {
-            const res = await fetch(`https://elegant-pear-coat.cyclic.app/login`, { // makes a POST request to http://localhost:8080/login to server/Controllers/AuthControllers login function
+            const res = await fetch(`http://elegant-pear-coat.cyclic.app/login`, { // makes a POST request to http://localhost:8080/login to server/Controllers/AuthControllers login function
                 method: 'POST',                                      // this route will check the mongoDB for the username and password and create a jwt token if succeessful
                 headers: {
                     'Content-Type': 'application/json'
