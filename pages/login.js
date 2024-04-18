@@ -16,10 +16,10 @@ export default function Login() {
 
     // called on login form submit
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault(); // prevents the default behaviour when submitting a form, allows for custom behaviour 
         try {
-            const res = await fetch(`https://elegant-pear-coat.cyclic.app/login`, {
-                method: 'POST',
+            const res = await fetch(`https://elegant-pear-coat.cyclic.app/login`, { // makes a POST request to http://localhost:8080/login to server/Controllers/AuthControllers login function
+                method: 'POST',                                                     // this route will check the mongoDB for the username and password and create a jwt token if succeessful
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -28,12 +28,9 @@ export default function Login() {
             });
             const data = await res.json();
             if (data && data.token) {
-                // Store the token in the localStorage
-                localStorage.setItem('jwt', data.token);
-    
-                // Redirect the user to the home route
-                router.push("/");
-            } else if (data && data.errors) {
+                localStorage.setItem('jwt', data.token); // save jwt token to local storage
+                router.push("/"); // if no errors send user to home route
+            } else if (data.errors) { // errors when username is not found or password is wrong
                 const { userName, password } = data.errors;
                 if (userName) generateError(userName);
                 else if (password) generateError(password);

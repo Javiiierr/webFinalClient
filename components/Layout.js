@@ -11,19 +11,18 @@ import Searchbar from '@/components/Searchbar'
 export default function Layout(props) {
   const [cartList, setCartList] = useAtom(cartListAtom); // needed to show length of cart
   const [favList, setFavList] = useAtom(favouriteListAtom); // needed to show length of favourites
-  const [cookies, setCookie, removeCookie] = useCookies(['jwt']); // get jwt cookie from browser
   const [loggedIn, setLoggedIn] = useState(false);
   const router = useRouter();
 
   // runs everytime the stored cookies change
   useEffect(() => {
     // if jwt cookie is found the user is logged in, if not they are logged out
-    if (cookies.jwt) {
-      setLoggedIn(true);
-    } else {
+    if (!localStorage.getItem('jwt')) {
       setLoggedIn(false);
+    } else {
+      setLoggedIn(true);
     }
-  }, [cookies]);
+  }, []);
 
   // called by the Log Out button
   const logOut = () => {
