@@ -16,27 +16,29 @@ export default function Favourites() {
   // called when cookies change, used to protect route
   useEffect(() => {
     const verifyUser = async () => {
-      if (!cookies.jwt) { // if no cookie found, send user to login
-        router.push("./login")
-      } else { // makes a POST request to http://localhost:8080 to validate jwt token with server/Middlewares/Auth
-        const res = await fetch(`https://elegant-pear-coat.cyclic.app`, {
+      // Check if the JWT token exists
+      if (!localStorage.getItem('jwt')) {
+        router.push("./login");
+      } else {
+        // Make a POST request to server to validate the JWT token
+        const res = await fetch(`https://web-final-server.vercel.app`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          credentials: 'include'
+          body: JSON.stringify({ token: localStorage.getItem('jwt') }) // Send JWT token in the request body
         });
         const data = await res.json();
-        if (!data.status) { // if invalid token
-          removeCookie("jwt")
-          router.push("./login")
+        if (!data.status) {
+          localStorage.removeItem('jwt');
+          router.push("./login");
         } else {
-          setUserName(data.user); // set username from response to be displayed in favourites header
+          setUserName(data.user);
         }
       }
-    }
-    verifyUser()
-  }, [cookies, router, removeCookie])
+    };
+    verifyUser();
+  }, [router]);
 
   // calls when user clicks remove button
   const removeFromFavourites = (indexToRemove) => {

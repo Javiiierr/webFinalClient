@@ -19,7 +19,7 @@ export default function SignUp() {
     const handleSubmit = async (e) => {
         e.preventDefault(); // prevents the default behaviour when submitting a form, allows for custom behaviour 
         try {
-            const res = await fetch(`https://elegant-pear-coat.cyclic.app/register`, { // makes a POST request to http://localhost:8080/register to server/Controllers/AuthControllers register
+            const res = await fetch(`https://web-final-server.vercel.app`, { // makes a POST request to http://localhost:8080/register to server/Controllers/AuthControllers register
                 method: 'POST',                                         // this route will add a user to the mongoDB and create a jwt token
                 headers: {
                     'Content-Type': 'application/json'
